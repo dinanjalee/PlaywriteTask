@@ -1,17 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import { ProductListPage } from '../pages/ProductListPage.ts';
+import { ProductListPage } from '../pages/ProductListPage';
+import { LoginDetails } from '../test-data/LoginDetails';
+import { ProductList } from '../test-data/ProductList';
 
 test('Verify Selected Product Details', async ({page})=>{
     const login = new LoginPage(page);
     const productlist = new ProductListPage(page);
 
-    //Validate the User should be able to add an item to the cart
+    //Validate user login to the system and loggedIn page
     await login.loadLoginPage();
-    await login.logintoSystem("standard_user","secret_sauce");
-    await login.validateLoggedInPage();
+    await login.logintoSystem(LoginDetails.username,LoginDetails.password);
 
-    await productlist.goToProductDetails("Sauce Labs Bike Light");
-    //await productlist.validateProductDetailsVisible();
-    await productlist.verifyProductDetails("Sauce Labs Bike Light","A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.","9.99")
+    //Validate user can navigate to the product details page
+    await productlist.goToProductDetails(ProductList[1].name);
+
+    //Validate the display product details
+    await productlist.verifyProductDetails(ProductList[1].name,ProductList[1].description,ProductList[1].price)
 })

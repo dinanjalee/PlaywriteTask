@@ -1,14 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
-import { ProductListPage } from '../pages/ProductListPage.ts';
+import { ProductListPage } from '../pages/ProductListPage';
+import { LoginDetails } from '../test-data/LoginDetails';
+import { SortList } from '../test-data/SortList';
 
 test('Verify Selected Product Details', async ({page})=>{
     const login = new LoginPage(page);
     const productlist = new ProductListPage(page);
 
+    //Validate user login to the system and loggedIn page
     await login.loadLoginPage();
-    await login.logintoSystem("standard_user","secret_sauce");
-    await login.validateLoggedInPage();
+    await login.logintoSystem(LoginDetails.username,LoginDetails.password);
 
-    await productlist.selectSortingMethod("za");
+    //Validate sort behaviour in product list page
+    await productlist.sortproductListAndVerifySortBehaviour(SortList[1]);
 })

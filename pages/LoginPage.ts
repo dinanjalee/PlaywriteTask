@@ -10,22 +10,25 @@ export class LoginPage{
 
     constructor(page:Page){
        this.page = page;
-       this.txtusername = page.locator("//*[@id='user-name']");
-       this.txtpassword = page.locator("//*[@id='password']");
-       this.btnlogin = page.locator("//*[@id='login-button']");
-       this.lblSwagLabs = page.locator("//*[@class='app_logo']");
+       this.txtusername = page.locator('#user-name');
+       this.txtpassword = page.locator('#password');
+       this.btnlogin = page.locator('#login-button');
+       this.lblSwagLabs = page.locator('.app_logo');
     }
 
+    //Navigate to website
     async loadLoginPage (){
         await this.page.goto('https://www.saucedemo.com/');
     }
 
+    //Login to the system
     async logintoSystem(username: string, password: string){
         await this.txtusername.fill(username);
         await this.txtpassword.fill(password);
         await this.btnlogin.click();
     }
 
+    //Validate LoggedIn page
     async validateLoggedInPage(){
         await expect(this.lblSwagLabs).toBeVisible();
     }

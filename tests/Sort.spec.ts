@@ -13,5 +13,5 @@ test('Verify Selected Product Details', async ({page})=>{
     await login.logintoSystem(LoginDetails.username,LoginDetails.password);
 
     //Validate sort behaviour in product list page
-    await productlist.sortproductListAndVerifySortBehaviour(SortList[1]);
+    await productlist.sortproductListAndVerifySortBehaviour(SortList[3]);
 })

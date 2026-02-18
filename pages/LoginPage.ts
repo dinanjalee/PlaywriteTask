@@ -18,7 +18,7 @@ export class LoginPage{
 
     //Navigate to website
     async loadLoginPage (){
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto('/');
     }
 
     //Login to the system

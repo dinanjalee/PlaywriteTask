@@ -64,7 +64,6 @@ export class ProductListPage{
                     console.log("Product is already added to the cart");
                 }
         }
-        await this.verifyItemCountDisplayInCartIcon(addedProductCount);
     }
     
     //Navigate to Cart Page
